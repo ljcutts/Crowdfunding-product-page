@@ -1,34 +1,65 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "./App.css";
 import ModalLinks from "./ModalLinks";
+import ProjectModal from './ProjectModal';
+import Thankyou from "./Thankyou";
 import styled from "styled-components";
 
 function Home() {
      const [modal, setModal] = useState(false);
+     const [projectModal, setProjectModal] = useState(false);
+     const [bookmark, setBookmark] = useState(false);
+     const [supportModal, setSupportModal] = useState(false);
+     const aboutRef = useRef();
+     const discoverRef = useRef();
+     const getStartedRef = useRef();
+    //  const bambooRef = useRef();
+
+      // const scrollToBamboo = () => {
+      //   setProjectModal(true);
+      //   bambooRef.current.scrollIntoView({ behavior: "smooth" });
+      // };
+
+      const selectReward = () => {
+        setProjectModal(true);
+      }
+     
+     
+
   return (
     <>
       <Nav>
         {modal === false && (
           <>
-           <span>crowdfund</span>
-        <span>
-          <img src="/images/icon-hamburger.svg" alt="uihkul" onClick={() => setModal(true)} />
-        </span> 
-        </>
+            <span>crowdfund</span>
+            <span>
+              <img
+                src="/images/icon-hamburger.svg"
+                alt="uihkul"
+                onClick={() => setModal(true)}
+              />
+            </span>
+          </>
         )}
-       
       </Nav>
       <HeroSection>
         <BookMarkContainer>
           <img src="/images/logo-mastercraft.svg" alt="" />
-          <h1>Mastercraft Bamboo Monitor Riser</h1>
+          <h1 ref={getStartedRef}>Mastercraft Bamboo Monitor Riser</h1>
           <p>
             A beautifully handcrafted monitor stand to reduce neck and eye
             strain.
           </p>
           <div>
-            <button>Back this project</button>
-            <img src="/images/icon-bookmark.svg" alt="" />
+            <button onClick={() => setProjectModal(true)}>
+              Back this project
+            </button>
+            <img
+              src="/images/icon-bookmark.svg"
+              alt=""
+              className={`${bookmark && "bookmark"}`}
+              onClick={() => setBookmark(!bookmark)}
+            />
           </div>
         </BookMarkContainer>
         <Stats>
@@ -60,7 +91,7 @@ function Home() {
         </Stats>
         <ProjectDescription>
           <div>
-            <h1>About this project</h1>
+            <h1 ref={aboutRef}>About this project</h1>
             <span>
               The Mastercraft Bamboo Monitor Riser is a sturdy and stylish
               platform that elevates your screen to a more comfortable viewing
@@ -76,7 +107,7 @@ function Home() {
               USB sticks to be stored under the stand.
             </span>
             <Rewards>
-              <h1>Bamboo Stand</h1>
+              <h1 ref={discoverRef}>Bamboo Stand</h1>
               <span>Pledge $25 or more</span>
               <br />
               <br />
@@ -91,7 +122,7 @@ function Home() {
                 </h1>
               </div>
               <div>
-                <button>Select Reward</button>
+                <button onClick={selectReward}>Select Reward</button>
               </div>
             </Rewards>
             <Rewards>
@@ -110,7 +141,7 @@ function Home() {
                 </h1>
               </div>
               <div>
-                <button>Select Reward</button>
+                <button onClick={selectReward}>Select Reward</button>
               </div>
             </Rewards>
             <LastReward>
@@ -135,7 +166,27 @@ function Home() {
           </div>
         </ProjectDescription>
       </HeroSection>
-      {modal && <ModalLinks modal={modal} setModal={setModal} />}
+      {modal && (
+        <ModalLinks
+          modal={modal}
+          setModal={setModal}
+          aboutRef={aboutRef}
+          discoverRef={discoverRef}
+          getStartedRef={getStartedRef}
+        />
+      )}
+      {projectModal && (
+        <ProjectModal
+          setProjectModal={setProjectModal}
+          setSupportModal={setSupportModal}
+        />
+      )}
+      {supportModal && (
+        <Thankyou
+          setSupportModal={setSupportModal}
+          setProjectModal={setProjectModal}
+        />
+      )}
     </>
   );
 }
@@ -192,6 +243,10 @@ const BookMarkContainer = styled.div`
     border-radius: 0.8rem;
     box-shadow: 0.1px 0.1px 0.1px 1px rgba(0, 0, 0, 0.1);
 
+    img:nth-child(2) {
+      cursor: pointer;
+    }
+
     img {
       position: relative;
       bottom: 1.55rem;
@@ -234,6 +289,7 @@ const BookMarkContainer = styled.div`
         color: white;
         font-weight: 700;
         font-size: 14px;
+        cursor: pointer;
       }
       img {
         bottom: 0rem;
@@ -296,6 +352,7 @@ const Stats = styled.div`
       padding: 0;
       border-radius: 1.5rem;
       border: none;
+      cursor: pointer;
     }
     div:last-child {
       width: 220px;
@@ -406,6 +463,7 @@ const Rewards = styled.div`
       color: white;
       font-weight: 700;
       font-size: 14px;
+      cursor: pointer;
     }
   }
 `;

@@ -80,7 +80,7 @@ h1,
 h2,
 h3,
 h4 {
-  letter-spacing: var(--spacing);
+  /* letter-spacing: var(--spacing); */
   text-transform: capitalize;
   line-height: 1.25;
   margin-bottom: 0.75rem;
@@ -163,5 +163,11 @@ p {
   to {
     transform: rotate(360deg);
   }
+}
+
+.bookmark{
+  /* background-color: green; */
+  color: white;
+  filter: invert(63%) sepia(56%) saturate(401%) hue-rotate(127deg) brightness(86%) contrast(100%);
 }
 
