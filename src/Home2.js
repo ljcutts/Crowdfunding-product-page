@@ -11,6 +11,10 @@ function Home2() {
     const aboutRef = useRef();
     const discoverRef = useRef();
     const getStartedRef = useRef();
+
+     const selectReward = () => {
+       setProjectModal(true);
+     };
     return (
       <>
         <Nav>
@@ -80,6 +84,82 @@ function Home2() {
               <div></div>
             </div>
           </Stats>
+          <ProjectDescription>
+            <div>
+              <h1 ref={aboutRef}>About this project</h1>
+              <span>
+                The Mastercraft Bamboo Monitor Riser is a sturdy and stylish
+                platform that elevates your screen to a more comfortable viewing
+                height. Placing your monitor at eye level has the potential to
+                improve your posture and make you more comfortable while at
+                work, helping you stay focused on the task at hand.
+              </span>
+              <br />
+              <br />
+              <span>
+                Featuring artisan craftsmanship, the simplicity of design
+                creates extra desk space below your computer to allow notepads,
+                pens, and USB sticks to be stored under the stand.
+              </span>
+            </div>
+            <Rewards>
+              <h1 ref={discoverRef}>Bamboo Stand</h1>
+              <span>Pledge $25 or more</span>
+              <br />
+              <br />
+              <p>
+                You get an ergonomic stand made of natural bamboo. You've helped
+                us launch our promotional campaign, and you’ll be added to a
+                special Backer member list.
+              </p>
+              <div>
+                <h1>
+                  101 <span>left</span>
+                </h1>
+              </div>
+              <div>
+                <button onClick={selectReward}>Select Reward</button>
+              </div>
+            </Rewards>
+            <Rewards>
+              <h1>Black Edition Stand</h1>
+              <span>Pledge $75 or more</span>
+              <br />
+              <br />
+              <p>
+                You get a Black Special Edition computer stand and a personal
+                thank you. You’ll be added to our Backer member list. Shipping
+                is included.
+              </p>
+              <div>
+                <h1>
+                  64 <span>left</span>
+                </h1>
+              </div>
+              <div>
+                <button onClick={selectReward}>Select Reward</button>
+              </div>
+            </Rewards>
+             <LastReward>
+              <h1>Mahogany Special Edition</h1>
+              <span>Pledge $200 or more</span>
+              <br />
+              <br />
+              <p>
+                You get two Special Edition Mahogany stands, a Backer T-Shirt,
+                and a personal thank you. You’ll be added to our Backer member
+                list. Shipping is included.
+              </p>
+              <div>
+                <h1>
+                  0 <span>left</span>
+                </h1>
+              </div>
+              <div>
+                <button>Out of Stock</button>
+              </div>
+            </LastReward>
+          </ProjectDescription>
         </HeroSection>
       </>
     );
@@ -213,14 +293,6 @@ const Nav = styled.nav`
    box-shadow: 0.1px 0.1px 0.1px 1px rgba(0, 0, 0, 0.1);
    border-radius: 0.8rem;
 
-   div {
-     /* display: flex; */
-     /* width: 273px; */
-     /* text-align: center;
-      align-items: center;
-      justify-content: center; */
-   }
-
    div:first-child {
      padding-left: 3rem;
      margin-top: 1.3rem;
@@ -287,6 +359,114 @@ const Nav = styled.nav`
    height: 1px;
    padding: 0 !important;
    background: rgba(0, 0, 0, 0.2);
+ `;
+
+ const ProjectDescription = styled.div`
+  width: 820px;
+    height: 1030px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 1.7rem;
+    padding-right: 1.5rem;
+    background: white;
+    padding-top: 2.5rem;
+    margin-top: 1.5rem;
+    box-shadow: 0.1px 0.1px 0.1px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 0.8rem;
+    border-bottom: solid rgba(0, 0, 0, 0.2);
+    h1 {
+      font-size: 20px;
+      letter-spacing: 0;
+      word-spacing: 0;
+      text-transform: none;
+      padding-bottom: 1.1rem;
+    }
+
+    span {
+      font-size: 12.9px;
+      word-spacing: 0.2rem;
+      opacity: 0.4;
+      color: black;
+    }
+ `
+
+ const Rewards = styled.div`
+   width: 100%;
+   height: 230px;
+   background: white;
+   margin-top: 1.5rem;
+   box-shadow: 0.1px 0.1px 0.1px 1px rgba(0, 0, 0, 0.1);
+   border-radius: 0.8rem;
+   padding-left: 1.7rem;
+   padding-top: 1rem;
+   padding-right: 1.5rem;
+
+   h1 {
+     font-size: 15px;
+     margin-bottom: 0;
+     padding-bottom: 0.5rem;
+      transform: translateY(25px);
+   }
+
+   span {
+    display: flex;
+    justify-content: flex-end ;
+     color: rgb(67, 179, 174);
+     opacity: 1;
+     font-weight: 400;
+     width: auto;
+     
+   }
+
+   p {
+     font-size: 13px;
+     opacity: 0.4;
+     color: black;
+    transform: translateY(-20px);
+   }
+
+   div {
+     display: flex;
+     align-items: center;
+   }
+   div h1 {
+     font-size: 30px;
+     transform: translateY(-5px);
+   }
+
+   div span {
+     color: black;
+     opacity: 0.4;
+     margin-left: 3.5rem;
+     transform: translateY(-18px);
+   }
+
+   div button {
+     margin-right: 1.5rem;
+     margin-top: 0.5rem;
+     margin-left: 560px;
+   }
+
+   button {
+     width: 160px;
+     height: 56px;
+     border: none;
+     background: hsl(176, 50%, 47%);
+     border-radius: 2.5rem;
+     color: white;
+     font-weight: 700;
+     font-size: 14px;
+     cursor: pointer;
+     transform: translateY(-80px);
+   }
+ `;
+
+ const LastReward = styled(Rewards)`
+   opacity: 0.3;
+   button {
+     background: black;
+   }
  `;
 
 
