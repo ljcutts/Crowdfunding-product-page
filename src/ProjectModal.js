@@ -108,6 +108,7 @@ import './ProjectModal.css'
                 <div>
                   <span>$</span>
                   <input
+                    type="number"
                     value={value}
                     onChange={(e) => setValue(e.target.value)}
                   />
@@ -147,6 +148,7 @@ import './ProjectModal.css'
                 <div>
                   <span>$</span>
                   <input
+                    type="number"
                     value={value}
                     onChange={(e) => setValue(e.target.value)}
                   />
@@ -186,6 +188,7 @@ import './ProjectModal.css'
                 <div>
                   <span>$</span>
                   <input
+                    type="number"
                     value={value}
                     onChange={(e) => setValue(e.target.value)}
                   />
@@ -314,8 +317,6 @@ const NoPledge = styled.div`
 const Pledge = styled(NoPledge)`
   @media (max-width: 768px) {
     height: 300px;
-    border-bottom-left-radius: 0rem;
-    border-bottom-right-radius: 0rem;
     div:first-child div {
       margin-top: 0.8rem;
     }

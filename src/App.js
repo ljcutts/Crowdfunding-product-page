@@ -1,11 +1,12 @@
 import React from 'react'
 import Home from './Home'
-import ModalLinks from './ModalLinks'
+import Home2 from './Home2'
 
 function App() {
   return (
     <>
-   <Home/>
+   {/* <Home/> */}
+   <Home2/>
    </>
   )
 }
