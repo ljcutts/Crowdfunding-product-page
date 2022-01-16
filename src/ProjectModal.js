@@ -246,7 +246,6 @@ const PledgeContainer = styled.div`
     display: grid;
     z-index: 999;
     place-items: center;
-    overflow-y: scroll;
   }
 
   @media (max-width: 768px) {
@@ -265,7 +264,7 @@ const PledgeContainer = styled.div`
 // Styling for Heading of modal
 const PledgeHeading = styled.div`
   @media (min-width: 768px) {
-    margin-top: 6rem;
+    margin-top: 1rem;
     max-width: 820px;
     height: auto;
     margin-right: 1rem;
@@ -304,7 +303,7 @@ const PledgeHeading = styled.div`
   }
 
   @media (max-width: 768px) {
-    margin-top: 6rem;
+    margin-top: 1rem;
     max-width: 340px;
     height: auto;
     margin-right: 1rem;
