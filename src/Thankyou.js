@@ -1,31 +1,29 @@
-import React from 'react'
-import styled from 'styled-components'
-import './Font.css'
+import React from "react";
+import styled from "styled-components";
+import "./Font.css";
 
-function Thankyou({setSupportModal, setProjectModal}) {
-
-    const finishCrowdFund = () => {
-        setSupportModal(false);
-        setProjectModal(false);
-    }
-    return (
-      <ThankYouContainer>
-        <MessageBox>
-          <img src="/images/icon-check.svg" alt="" />
-          <h1>Thanks for your support!</h1>
-          <p>
-            Your pledge brings us one step closer to
-            sharing Mastercraft Bamboo Monitor Riser worldwide. You will get an
-            email once our campaign is completed.
-          </p>
-          <button onClick={finishCrowdFund}>Got it!</button>
-        </MessageBox>
-      </ThankYouContainer>
-    );
+function Thankyou({ setSupportModal, setProjectModal }) {
+  const finishCrowdFund = () => {
+    setSupportModal(false);
+    setProjectModal(false);
+  };
+  return (
+    <ThankYouContainer>
+      <MessageBox>
+        <img src="/images/icon-check.svg" alt="" />
+        <h1>Thanks for your support!</h1>
+        <p>
+          Your pledge brings us one step closer to sharing Mastercraft Bamboo
+          Monitor Riser worldwide. You will get an email once our campaign is
+          completed.
+        </p>
+        <button onClick={finishCrowdFund}>Got it!</button>
+      </MessageBox>
+    </ThankYouContainer>
+  );
 }
 
 const ThankYouContainer = styled.div`
-
   position: fixed;
   top: 0rem;
   left: 0;
@@ -40,7 +38,7 @@ const ThankYouContainer = styled.div`
 const MessageBox = styled.div`
   margin: 0 auto;
   margin-top: 5rem;
-  width: 335px;
+  width: 500px;
   height: 430px;
   background: white;
   margin-bottom: 9rem;
@@ -48,7 +46,9 @@ const MessageBox = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-
+  @media (max-width: 768px) {
+    width: 335px;
+  }
   img {
     width: 20%;
     height: 20%;
@@ -83,7 +83,10 @@ const MessageBox = styled.div`
     font-weight: 700;
     font-size: 14px;
     cursor: pointer;
+    &:hover {
+      background: hsl(176, 72%, 28%);
+    }
   }
 `;
 
-export default Thankyou
+export default Thankyou;
