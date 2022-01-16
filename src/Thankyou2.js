@@ -46,6 +46,9 @@ const MessageBox = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  @media (max-width: 768px) {
+    width: 335px;
+  }
   img {
     width: 20%;
     height: 20%;

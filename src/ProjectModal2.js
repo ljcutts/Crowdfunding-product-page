@@ -228,6 +228,19 @@ const PledgeContainer = styled.div`
     place-items: center;
     overflow-y: scroll;
   }
+
+  @media (max-width: 768px) {
+    position: fixed;
+    top: 0rem;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: grid;
+    z-index: 999;
+    place-items: center;
+    overflow-y: scroll;
+  }
 `;
 
 const PledgeHeading = styled.div`
@@ -255,6 +268,45 @@ const PledgeHeading = styled.div`
         padding-top: 0.3rem;
         width: 2%;
         height: 2%;
+        cursor: pointer;
+      }
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 1rem;
+    }
+    span {
+      font-size: 15px;
+      color: black;
+      opacity: 0.5;
+      font-weight: 600;
+      line-height: 1.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 6rem;
+    max-width: 340px;
+    height: auto;
+    margin-right: 1rem;
+    margin-left: 1rem;
+    background: white;
+    border-radius: 0.8rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 1.7rem;
+    padding-bottom: 1.8rem;
+    div:first-child {
+      h1 {
+        font-size: 15px;
+        text-transform: none;
+        color: black;
+        font-weight: 800;
+        letter-spacing: none;
+      }
+      img {
+        padding-top: 0.3rem;
+        width: 5%;
+        height: 5%;
         cursor: pointer;
       }
       display: flex;
@@ -308,6 +360,42 @@ const NoPledge = styled.div`
       font-size: 15px;
     }
   }
+
+  @media (max-width: 768px) {
+    width: 290px;
+    height: 240px;
+    background: white;
+    margin-top: 1.5rem;
+    box-shadow: 0.1px 0.1px 0.1px 1px rgba(0, 0, 0, 0.1);
+    padding-left: 1.7rem;
+    padding-top: 1.8rem;
+    padding-right: 2.5rem;
+    div:first-child {
+      padding-bottom: 0.5rem;
+    }
+
+    div:first-child div {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      box-shadow: 0.2px 0.2px 0.2px 2px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+
+    p {
+      margin-left: 2rem;
+      width: 100%;
+      font-size: 15px;
+      text-transform: none;
+      color: black;
+      font-weight: 700;
+      letter-spacing: none;
+    }
+    span {
+      font-size: 15px;
+    }
+  }
 `;
 
 const Pledge = styled(NoPledge)`
@@ -317,30 +405,43 @@ const Pledge = styled(NoPledge)`
       margin-top: 0.8rem;
     }
     p:nth-child(3) {
-        display: flex;
-       justify-content: flex-end;
+      display: flex;
+      justify-content: flex-end;
       margin-left: 40rem;
       font-size: 18px;
       transform: translateY(-90px);
       width: 0;
-
     }
-    p{
-        transform: translateY(10px);
+    p {
+      transform: translateY(10px);
     }
-    span:last-child{
-        padding-left: 0.5rem;
+    span:last-child {
+      padding-left: 0.5rem;
     }
-    span:nth-child(2){
-      
+    span:nth-child(2) {
     }
     div span {
-     display: flex;
+      display: flex;
       margin-left: 7rem;
       padding-bottom: 1rem;
       color: hsl(176, 50%, 47%);
       opacity: 1;
-      transform: translateY(-23px)
+      transform: translateY(-23px);
+    }
+  }
+  @media (max-width: 768px) {
+    height: 300px;
+    div:first-child div {
+      margin-top: 0.8rem;
+    }
+    p:nth-child(3) {
+      margin-top: 1.2rem;
+      margin-left: 0;
+      font-size: 18px;
+    }
+    div span {
+      color: hsl(176, 50%, 47%);
+      opacity: 1;
     }
   }
 `;
@@ -399,10 +500,69 @@ const PledgeAmount = styled.section`
       flex-direction: flex-start;
     }
   }
+  @media (max-width: 768px) {
+    width: 290px;
+    height: 140px;
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 6rem;
+    border-bottom-left-radius: 0.8rem;
+    border-bottom-right-radius: 0.8rem;
+    box-shadow: 0.1px 0.1px 0.1px 1px rgba(0, 0, 0, 0.1);
+    button {
+      margin-right: 0.8rem;
+      cursor: pointer;
+    }
+    input {
+      margin-right: 1.5rem;
+      box-shadow: 0.1px 0.1px 0.1px 1px rgba(0, 0, 0, 0.1);
+      padding-left: 2rem;
+      border: solid rgba(0, 0, 0, 0.1);
+    }
+    button,
+    input {
+      width: 95px;
+      height: 40px;
+      border-radius: 1.5rem;
+      font-weight: 700;
+    }
+    input:focus {
+      outline: none !important;
+      border: solid hsl(176, 50%, 47%);
+    }
+    button {
+      background: hsl(176, 50%, 47%);
+      color: white;
+      border: none;
+      &:hover {
+        background: hsl(176, 72%, 28%);
+      }
+    }
+    div span {
+      position: absolute;
+      padding-top: 0.45rem;
+      padding-left: 1rem;
+    }
+    & > span {
+      padding-bottom: 1rem;
+    }
+    div {
+      display: flex;
+      flex-direction: flex-start;
+    }
+  }
 `;
 
 const BambooStand = styled(Pledge)`
-  height: 160px;
+  @media (min-width: 768px) {
+    height: 160px;
+  }
+
+  @media (max-width: 768px) {
+    height: 320px;
+  }
 `;
 
 const Mahogany = styled(BambooStand)`

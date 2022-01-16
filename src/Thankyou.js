@@ -48,6 +48,7 @@ const MessageBox = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+
   img {
     width: 20%;
     height: 20%;

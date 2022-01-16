@@ -166,7 +166,6 @@ p {
 }
 
 .bookmark{
-  /* background-color: green; */
   color: white;
   filter: invert(39%) sepia(89%) saturate(6648%) hue-rotate(165deg) brightness(88%) contrast(84%);
 }
