@@ -1,29 +1,25 @@
-.div{
+/* pledgeDivs control the border of the Pledge Reward Containers */
+.pledgeDiv{
     border: solid hsl(176, 50%, 47%);
     border-bottom: none;
     border-top-left-radius: 0.8rem;
     border-top-right-radius: 0.8rem;
 }
 
-.div2{
+.pledgeDiv2{
     border-radius: 0.8rem;
 }
-
-.styleamount{
+/* Controls the border of the container that allows you to put in money amount for pledge */
+.pledgeStyleAmount{
     border: solid hsl(176, 50%, 47%);
-    border-bottom: none;
-}
-
-.amount{
     border-top: none;
-    border-bottom: solid hsl(176, 50%, 47%);
 }
 
-
+/* Remove green dot */
 .notToggle{
     display: none;
 }
-
+/* Brings up green dot */
 .toggle{
     border: none;
     border-radius: 50%;
@@ -36,7 +32,7 @@
 }
 
 
-
+/* Helps to provide Space for Reward headings */
  @media only screen and (min-width: 768px){
         #move-span{
             margin-left: 9rem;
@@ -54,16 +50,17 @@
          }
       }
 
-
+/* Lights up Bookmark */
 #bookmarked{
     color: hsl(176, 72%, 28%);
 }
 
+/* Lights up circle by Pledge reward name */
 .hover:hover{
   color: hsl(176, 50%, 47%);
   cursor: pointer;
 }
-
-.hover2:hover{
+/* Lights up Reward name */
+.pledgeHover:hover{
     border: solid hsl(176, 50%, 47%);
 }

@@ -7,52 +7,59 @@ import Thankyou from "./Thankyou";
 import ModalLinks from "./ModalLinks";
 
 function Home() {
-    const [modal, setModal] = useState(false);
-    const [projectModal, setProjectModal] = useState(false);
-    const [bookmark, setBookmark] = useState(false);
-    const [supportModal, setSupportModal] = useState(false);
+    const [modal, setModal] = useState(false); // state for navbar modal links
+    const [projectModal, setProjectModal] = useState(false); // state for modal with rewards
+    const [bookmark, setBookmark] = useState(false); //state for bookmark
+    const [supportModal, setSupportModal] = useState(false); // state for 'thank you for your support' modal
+    const [donationAmount, setDonationAmount] = useState(89914); //state for donation amount
+    const [backers, setBackers] = useState(5007); // state for amount of backers
     const aboutRef = useRef();
     const discoverRef = useRef();
     const getStartedRef = useRef();
 
+//  function to scroll to "About this project" container
     const scrollToAbout = () => {
       aboutRef.current.scrollIntoView({ behavior: "smooth" });
       setModal(false);
     };
-
+//   function to scroll to different rewards on Home page
     const scrollToDiscover = () => {
       discoverRef.current.scrollIntoView({ behavior: "smooth" });
       setModal(false);
     };
-
+// function to scroll to first container with bookmark and 'back this project' button
     const scrollToStart = () => {
       getStartedRef.current.scrollIntoView({ behavior: "smooth" });
       setModal(false);
     };
-
+//    Opens up Modal where you select which Pledge you will donate to
      const selectReward = () => {
        setProjectModal(true);
      };
     return (
       <>
+        {/* Nav Bar */}
         <Nav>
-          {modal === false && 
-           <>
-           <img src="/images/logo.svg" alt="" />
-            <span>
-              <img
-                src="/images/icon-hamburger.svg"
-                alt=""
-                onClick={() => setModal(true)}
-              />
-              <span onClick={() => scrollToAbout()}>About</span>
-              <span onClick={() => scrollToDiscover()}>Discover</span>
-              <span onClick={() => scrollToStart()}>Get Started</span>
-            </span>
+          {modal === false && (
+            <>
+              <img src="/images/logo.svg" alt="" />
+              <span>
+                <img
+                  src="/images/icon-hamburger.svg"
+                  alt=""
+                  onClick={() => setModal(true)}
+                  // Opens up Modal with NavLinks on Mobile Device
+                />
+                <span onClick={() => scrollToAbout()}>About</span>
+                <span onClick={() => scrollToDiscover()}>Discover</span>
+                <span onClick={() => scrollToStart()}>Get Started</span>
+              </span>
             </>
-          }
+          )}
         </Nav>
+        {/* HeroSection is everything below the Navbar */}
         <HeroSection>
+          {/* BookMarkContainer is box with bookmark, mastercraft logo, and 'back this project' button */}
           <BookMarkContainer>
             <img src="/images/logo-mastercraft.svg" alt="" />
             <h1 ref={getStartedRef}>Mastercraft Bamboo Monitor Riser</h1>
@@ -61,16 +68,18 @@ function Home() {
               strain.
             </p>
             <div>
+              {/* Button opens up Modal where you select which Pledge you will donate to  */}
               <button onClick={() => setProjectModal(true)}>
                 Back this project
               </button>
-              <section onClick={() => setBookmark(!bookmark)}>
+              <section onClick={() => setBookmark(!bookmark)}> 
                 <img
                   src="/images/icon-bookmark.svg"
                   alt=""
                   className={`${bookmark && "bookmark"}`}
-                  onClick={() => setBookmark(!bookmark)}
+                  onClick={() => setBookmark(!bookmark)} //Helps light up bookmark and change colors
                 />
+                {/* Functionality changes words for bookmark when setBookmark is set to true */}
                 {bookmark ? (
                   <span id="bookmarked">Bookmarked</span>
                 ) : (
@@ -79,10 +88,11 @@ function Home() {
               </section>
             </div>
           </BookMarkContainer>
+          {/* Container that shows numbers and status of amount of donaters and donation amount */}
           <Stats>
             <div>
               <h1>
-                $89,914
+                ${donationAmount}
                 <br />
                 <span>of $100,000 backed</span>
               </h1>
@@ -90,7 +100,7 @@ function Home() {
             <Underline />
             <div>
               <h1>
-                5007
+                {backers}
                 <br />
                 <span>total backers</span>
               </h1>
@@ -108,6 +118,7 @@ function Home() {
               <div></div>
             </div>
           </Stats>
+          {/* Container that describes project and Pledge Rewards */}
           <ProjectDescription>
             <div>
               <h1 ref={aboutRef}>About this project</h1>
@@ -164,6 +175,7 @@ function Home() {
                 <button onClick={selectReward}>Select Reward</button>
               </div>
             </Rewards>
+            {/* Last Pledge Reward */}
             <LastReward>
               <h1>Mahogany Special Edition</h1>
               <span>Pledge $200 or more</span>
@@ -185,21 +197,28 @@ function Home() {
             </LastReward>
           </ProjectDescription>
         </HeroSection>
+        {/* Nav modal links */}
         {modal && (
-        <ModalLinks
-          modal={modal}
-          setModal={setModal}
-          aboutRef={aboutRef}
-          discoverRef={discoverRef}
-          getStartedRef={getStartedRef}
-        />
-      )}
+          <ModalLinks
+            modal={modal}
+            setModal={setModal}
+            aboutRef={aboutRef}
+            discoverRef={discoverRef}
+            getStartedRef={getStartedRef}
+          />
+        )}
+        {/* Modal that allows you to pay for Pledge Reward */}
         {projectModal && (
           <ProjectModal
             setProjectModal={setProjectModal}
             setSupportModal={setSupportModal}
+            backers={backers}
+            setBackers={setBackers}
+            donationAmount={donationAmount}
+            setDonationAmount={setDonationAmount}
           />
         )}
+        {/* Modal with 'thank you for your support' message */}
         {supportModal && (
           <Thankyou
             setSupportModal={setSupportModal}
@@ -209,7 +228,7 @@ function Home() {
       </>
     );
 }
-
+// Styling for Navbar 
 const Nav = styled.nav`
   @media (min-width: 768px) {
     display: flex;
@@ -273,6 +292,7 @@ const Nav = styled.nav`
     }
   }
 `;
+// Styling to set up everything below Nav
  const HeroSection = styled.div`
    @media (min-width: 768px) {
      max-width: 820px;
@@ -285,7 +305,7 @@ const Nav = styled.nav`
      margin: 0 auto;
    }
  `;
-
+// Styling for container with bookmark, mastercraft logo
  const BookMarkContainer = styled.div`
    @media (min-width: 768px) {
      display: flex;
@@ -450,7 +470,7 @@ const Nav = styled.nav`
      }
    }
  `;
-
+//  Styling for container that shows donationAmount and backers
  const Stats = styled.div`
    @media (min-width: 768px) {
      display: flex;
@@ -596,6 +616,7 @@ const Nav = styled.nav`
    }
    
  `;
+//  Styling for underline in the Stats container
  const Underline = styled.div`
    @media (min-width: 768px) {
      width: 70px ;
@@ -612,7 +633,7 @@ const Nav = styled.nav`
      background: rgba(0, 0, 0, 0.2);
    }
  `;
-
+// Styling container that describes the mastercraft project
  const ProjectDescription = styled.div`
    @media (min-width: 768px) {
      width: 820px;
@@ -673,7 +694,7 @@ const Nav = styled.nav`
      }
    }
  `;
-
+// Styling for Different Rewards
  const Rewards = styled.div`
    @media (min-width: 768px) {
      width: 100%;
@@ -811,7 +832,7 @@ const Nav = styled.nav`
      }
    }
  `;
-
+// Styling for Last Reward
  const LastReward = styled(Rewards)`
    opacity: 0.3;
    button {

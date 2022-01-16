@@ -3,6 +3,7 @@ import styled from "styled-components";
 import "./Font.css";
 
 function Thankyou({ setSupportModal, setProjectModal }) {
+  // Closes modals
   const finishCrowdFund = () => {
     setSupportModal(false);
     setProjectModal(false);

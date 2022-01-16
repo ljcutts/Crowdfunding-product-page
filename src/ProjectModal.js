@@ -3,12 +3,13 @@ import styled from "styled-components";
 import "./Font.css";
 import "./ProjectModal.css";
 
-function ProjectModal({ setProjectModal, setSupportModal }) {
-  const [activatePledgeAmount, setActivatePledgeAmount] = useState(false);
-  const [activatePledgeAmount2, setActivatePledgeAmount2] = useState(false);
-  const [activatePledgeAmount3, setActivatePledgeAmount3] = useState(false);
-  const [value, setValue] = useState(0);
+function ProjectModal({ setProjectModal, setSupportModal, backers, donationAmount, setBackers, setDonationAmount }) {
+  const [activatePledgeAmount, setActivatePledgeAmount] = useState(false); //Toggle container that allows you to pay for first Pledge
+  const [activatePledgeAmount2, setActivatePledgeAmount2] = useState(false); //Toggle container that allows you to pay for second Pledge
+  const [activatePledgeAmount3, setActivatePledgeAmount3] = useState(false); // Toggle container that allows you to pay for third Pledge
+  const [value, setValue] = useState(0); //Allows you to change input amount
 
+  // functionality for No Pledge Reward Along with Updating backers and donation amount
   const getToSupportMessage = () => {
     if (value < 1) {
       alert("Amount has to be greater than 0");
@@ -16,8 +17,11 @@ function ProjectModal({ setProjectModal, setSupportModal }) {
       setProjectModal(false);
       setSupportModal(true);
     }
+    setBackers(backers + 1);
+    setDonationAmount(donationAmount + parseInt(value));
   };
 
+  // functionality for Bamoboo Stand Reward Along with Updating backers and donation amount
   const getToSupportMessage2 = () => {
     if (value < 25) {
       alert("Amount has to be 25 or more");
@@ -25,8 +29,11 @@ function ProjectModal({ setProjectModal, setSupportModal }) {
       setProjectModal(false);
       setSupportModal(true);
     }
+    setBackers(backers + 1);
+    setDonationAmount(donationAmount + parseInt(value));
   };
 
+  // functionality for Black Edition Stand Reward Along with Updating backers and donation amount
   const getToSupportMessage3 = () => {
     if (value < 75) {
       alert("Amount has to be 75 or more");
@@ -34,8 +41,12 @@ function ProjectModal({ setProjectModal, setSupportModal }) {
       setProjectModal(false);
       setSupportModal(true);
     }
+    setBackers(backers + 1);
+    setDonationAmount(donationAmount + parseInt(value));
   };
 
+
+  // activates pledge containers and makes sure only one pledge is active
   const theNoPledge = () => {
     if (activatePledgeAmount2 === true) {
       setActivatePledgeAmount2(!activatePledgeAmount2);
@@ -66,7 +77,9 @@ function ProjectModal({ setProjectModal, setSupportModal }) {
   };
 
   return (
+    // Container for whole modal
     <PledgeContainer>
+      {/* Heading for modal */}
       <PledgeHeading>
         <div>
           <h1>Back this project</h1>
@@ -80,9 +93,12 @@ function ProjectModal({ setProjectModal, setSupportModal }) {
           Want to support us in bringing Mastercraft Bamboo Monitor Rise out in
           the world?
         </span>
-        <NoPledge className={`${activatePledgeAmount ? "div" : "div2"}`}>
+        {/* Pledge with no rewards */}
+        <NoPledge
+          className={`${activatePledgeAmount ? "pledgeDiv" : "pledgeDiv2"}`}
+        >
           <div>
-            <div className="hover2" onClick={() => theNoPledge()}>
+            <div className="pledgeHover" onClick={() => theNoPledge()}>
               <button
                 className={`${activatePledgeAmount ? "toggle" : "notToggle"}`}
               ></button>
@@ -98,7 +114,7 @@ function ProjectModal({ setProjectModal, setSupportModal }) {
           </span>
         </NoPledge>
         {activatePledgeAmount && (
-          <PledgeAmount className="styleamount amount">
+          <PledgeAmount className="pledgeStyleAmount">
             <span>Enter your pledge</span>
             <div>
               <div>
@@ -113,10 +129,12 @@ function ProjectModal({ setProjectModal, setSupportModal }) {
             </div>
           </PledgeAmount>
         )}
-
-        <BambooStand className={`${activatePledgeAmount2 ? "div" : "div2"}`}>
+        {/* Container for BambooStand Reward */}
+        <BambooStand
+          className={`${activatePledgeAmount2 ? "pledgeDiv" : "pledgeDiv2"}`}
+        >
           <div>
-            <div className="hover2" onClick={() => pledge2()}>
+            <div className="pledgeHover" onClick={() => pledge2()}>
               <button
                 className={`${activatePledgeAmount2 ? "toggle" : "notToggle"}`}
               ></button>
@@ -136,7 +154,7 @@ function ProjectModal({ setProjectModal, setSupportModal }) {
           </p>
         </BambooStand>
         {activatePledgeAmount2 && (
-          <PledgeAmount className="styleamount amount">
+          <PledgeAmount className="pledgeStyleAmount">
             <span>Enter your pledge</span>
             <div>
               <div>
@@ -152,12 +170,12 @@ function ProjectModal({ setProjectModal, setSupportModal }) {
             </div>
           </PledgeAmount>
         )}
-        <Pledge className={`${activatePledgeAmount3 ? "div" : "div2"}`}>
+        {/* Container for Black Edition Reward */}
+        <Pledge
+          className={`${activatePledgeAmount3 ? "pledgeDiv" : "pledgeDiv2"}`}
+        >
           <div>
-            <div
-              className="hover2"
-              onClick={() => pledge3()}
-            >
+            <div className="pledgeHover" onClick={() => pledge3()}>
               <button
                 className={`${activatePledgeAmount3 ? "toggle" : "notToggle"}`}
               ></button>
@@ -177,7 +195,7 @@ function ProjectModal({ setProjectModal, setSupportModal }) {
           </p>
         </Pledge>
         {activatePledgeAmount3 && (
-          <PledgeAmount className="styleamount amount">
+          <PledgeAmount className="pledgeStyleAmount">
             <span>Enter your pledge</span>
             <div>
               <div>
@@ -193,6 +211,7 @@ function ProjectModal({ setProjectModal, setSupportModal }) {
             </div>
           </PledgeAmount>
         )}
+        {/* Container for last Pledge Reward */}
         <Mahogany>
           <div>
             <div></div>
@@ -215,6 +234,7 @@ function ProjectModal({ setProjectModal, setSupportModal }) {
   );
 }
 
+// Styling for whole Modal
 const PledgeContainer = styled.div`
   @media (min-width: 768px) {
     position: fixed;
@@ -242,7 +262,7 @@ const PledgeContainer = styled.div`
     overflow-y: scroll;
   }
 `;
-
+// Styling for Heading of modal
 const PledgeHeading = styled.div`
   @media (min-width: 768px) {
     margin-top: 6rem;
@@ -322,7 +342,7 @@ const PledgeHeading = styled.div`
     }
   }
 `;
-
+// Styling for Pledge with no Reward
 const NoPledge = styled.div`
   @media (min-width: 768px) {
     width: 710px;
@@ -398,6 +418,7 @@ const NoPledge = styled.div`
   }
 `;
 
+// Styling for other Pledge Reward Containers
 const Pledge = styled(NoPledge)`
   @media (min-width: 768px) {
     height: 160px;
@@ -445,7 +466,7 @@ const Pledge = styled(NoPledge)`
     }
   }
 `;
-
+//Styling for Container that allows you to input amount of money you will donate
 const PledgeAmount = styled.section`
   @media (min-width: 768px) {
     width: 710px;
@@ -555,6 +576,7 @@ const PledgeAmount = styled.section`
   }
 `;
 
+// Styling for Bamboo Stand Reward
 const BambooStand = styled(Pledge)`
   @media (min-width: 768px) {
     height: 160px;
@@ -565,6 +587,7 @@ const BambooStand = styled(Pledge)`
   }
 `;
 
+// Styling for last Pledge Reward
 const Mahogany = styled(BambooStand)`
   opacity: 0.5;
   border-bottom-left-radius: 0.8rem;
