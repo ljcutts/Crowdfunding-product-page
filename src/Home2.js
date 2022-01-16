@@ -1,7 +1,8 @@
 import React, {useState, useRef} from 'react'
 import styled from 'styled-components';
 import './Font.css';
-import './App.css';
+import ProjectModal2 from './ProjectModal2';
+import Thankyou2 from "./Thankyou2";
 
 function Home2() {
     const [modal, setModal] = useState(false);
@@ -11,6 +12,22 @@ function Home2() {
     const aboutRef = useRef();
     const discoverRef = useRef();
     const getStartedRef = useRef();
+  
+    
+    const scrollToAbout = () => {
+      aboutRef.current.scrollIntoView({ behavior: "smooth" });
+      setModal(false);
+    };
+
+    const scrollToDiscover = () => {
+      discoverRef.current.scrollIntoView({ behavior: "smooth" });
+      setModal(false);
+    };
+
+    const scrollToStart = () => {
+      getStartedRef.current.scrollIntoView({ behavior: "smooth" });
+      setModal(false);
+    };
 
      const selectReward = () => {
        setProjectModal(true);
@@ -26,9 +43,9 @@ function Home2() {
                 alt="uihkul"
                 onClick={() => setModal(true)}
               />
-              <span>About</span>
-              <span>Discover</span>
-              <span>Get Started</span>
+              <span onClick={() => scrollToAbout()}>About</span>
+              <span onClick={() => scrollToDiscover()}>Discover</span>
+              <span onClick={() => scrollToStart()}>Get Started</span>
             </span>
           </>
         </Nav>
@@ -44,14 +61,18 @@ function Home2() {
               <button onClick={() => setProjectModal(true)}>
                 Back this project
               </button>
-              <section>
+              <section onClick={() => setBookmark(!bookmark)}>
                 <img
                   src="/images/icon-bookmark.svg"
                   alt=""
                   className={`${bookmark && "bookmark"}`}
                   onClick={() => setBookmark(!bookmark)}
                 />
-                <span>Bookmark</span>
+                {bookmark ? (
+                  <span id="bookmarked">Bookmarked</span>
+                ) : (
+                  <span>Bookmark</span>
+                )}
               </section>
             </div>
           </BookMarkContainer>
@@ -140,7 +161,7 @@ function Home2() {
                 <button onClick={selectReward}>Select Reward</button>
               </div>
             </Rewards>
-             <LastReward>
+            <LastReward>
               <h1>Mahogany Special Edition</h1>
               <span>Pledge $200 or more</span>
               <br />
@@ -161,6 +182,18 @@ function Home2() {
             </LastReward>
           </ProjectDescription>
         </HeroSection>
+        {projectModal && (
+          <ProjectModal2
+            setProjectModal={setProjectModal}
+            setSupportModal={setSupportModal}
+          />
+        )}
+        {supportModal && (
+          <Thankyou2
+            setSupportModal={setSupportModal}
+            setProjectModal={setProjectModal}
+          />
+        )}
       </>
     );
 }
@@ -191,6 +224,7 @@ const Nav = styled.nav`
   span{
       color: white;
       padding-left: 1.5rem;
+      cursor: pointer;
   }
 `;
  const HeroSection = styled.div`
@@ -249,7 +283,7 @@ const Nav = styled.nav`
      justify-content: center;
      text-align: center;
      width: 100%;
-     
+
      button {
        margin-right: 25rem;
        width: 200px;
@@ -261,24 +295,28 @@ const Nav = styled.nav`
        font-weight: 700;
        font-size: 14px;
        cursor: pointer;
+       &:hover {
+         background: hsl(176, 72%, 28%);
+       }
      }
      img {
        bottom: 0rem;
      }
    }
-   section{
-       display: flex;
-       align-items: center;
-       background: lightgray;
-       border-radius: 1.5rem;
-       height: 56px;
-       padding-right: 1rem;
-       width: auto;
+   section {
+     display: flex;
+     align-items: center;
+     background: rgba(0, 0, 0, 0.1);
+     border-radius: 1.5rem;
+     height: 56px;
+     padding-right: 1rem;
+     width: auto;
+     cursor: pointer;
    }
-   section span{
-       padding-left: 0.4rem;
-       text-align: center;
-       color: grey;
+   section span {
+     padding-left: 0.4rem;
+     text-align: center;
+     color: grey;
    }
  `;
 
@@ -406,24 +444,23 @@ const Nav = styled.nav`
      font-size: 15px;
      margin-bottom: 0;
      padding-bottom: 0.5rem;
-      transform: translateY(25px);
+     transform: translateY(25px);
    }
 
    span {
-    display: flex;
-    justify-content: flex-end ;
+     display: flex;
+     justify-content: flex-end;
      color: rgb(67, 179, 174);
      opacity: 1;
      font-weight: 400;
      width: auto;
-     
    }
 
    p {
      font-size: 13px;
      opacity: 0.4;
      color: black;
-    transform: translateY(-20px);
+     transform: translateY(-20px);
    }
 
    div {
@@ -459,6 +496,9 @@ const Nav = styled.nav`
      font-size: 14px;
      cursor: pointer;
      transform: translateY(-80px);
+     &:hover {
+       background: hsl(176, 72%, 28%);
+     }
    }
  `;
 
@@ -466,6 +506,9 @@ const Nav = styled.nav`
    opacity: 0.3;
    button {
      background: black;
+     &:hover {
+       background: black;
+     }
    }
  `;
 

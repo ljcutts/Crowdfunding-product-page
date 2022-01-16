@@ -35,3 +35,24 @@
     background: hsl(176, 50%, 47%);
     cursor: pointer;
 }
+
+#move-span{
+    margin-left: 9rem;
+}
+
+#move-span2{
+    margin-left: 11.5rem;
+}
+
+#bookmarked{
+    color: hsl(176, 72%, 28%);
+}
+
+.hover:hover{
+  color: hsl(176, 50%, 47%);
+  cursor: pointer;
+}
+
+.hover2:hover{
+    border: solid hsl(176, 50%, 47%);
+}
