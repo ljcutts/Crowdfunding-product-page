@@ -59,14 +59,14 @@ I want to get much better at being able to handle CSS when building out the mobi
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
+- (https://www.w3schools.com) - Dictionary for web development
+- (https://www.stackoverflow.com) - A life saver for debugging and figuring out how to use things, along with examples
 
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
+- Website - (https://www.your-site.com)
+- Frontend Mentor - [@ljcutts](https://www.frontendmentor.io/profile/ljcutts)
 
 ## Acknowledgments
 
