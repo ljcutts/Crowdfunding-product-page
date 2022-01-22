@@ -23,13 +23,15 @@
 .toggle{
     border: none;
     border-radius: 50%;
-    margin-left: 0.3rem;
-    margin-top: 0.25rem;
     width: 12px;
     height: 12px;
     background: hsl(176, 50%, 47%);
     cursor: pointer;
+     margin-left: 0.3rem;
+    margin-top: 0.25rem;
 }
+
+
 
 
 /* Helps to provide Space for Reward headings */
@@ -48,11 +50,24 @@
          #move-span2{
              margin-left: 0rem;
          }
+
+         #progressionbar2{
+            margin-right: 0rem;
+            width: 223px;
+         }
       }
 
 /* Lights up Bookmark */
 #bookmarked{
     color: hsl(176, 72%, 28%);
+}
+/* Bookmark CSS */
+.bookmark-path{
+    fill: white;
+}
+
+.circle{
+    fill: hsl(176, 72%, 28%);
 }
 
 /* Lights up circle by Pledge reward name */
@@ -63,4 +78,10 @@
 /* Lights up Reward name */
 .pledgeHover:hover{
     border: solid hsl(176, 50%, 47%);
+    border-radius: 50%;
+}
+
+/* Increases progression bar length */
+#progressionbar{
+    width: 640px;
 }

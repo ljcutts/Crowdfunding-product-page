@@ -3,10 +3,18 @@ import styled from "styled-components";
 import "./Font.css";
 import "./ProjectModal.css";
 
-function ProjectModal({ setProjectModal, setSupportModal, backers, donationAmount, setBackers, setDonationAmount }) {
-  const [activatePledgeAmount, setActivatePledgeAmount] = useState(false); //Toggle container that allows you to pay for first Pledge
-  const [activatePledgeAmount2, setActivatePledgeAmount2] = useState(false); //Toggle container that allows you to pay for second Pledge
-  const [activatePledgeAmount3, setActivatePledgeAmount3] = useState(false); // Toggle container that allows you to pay for third Pledge
+function ProjectModal({
+  setProjectModal,
+  setSupportModal,
+  backers,
+  donationAmount,
+  setBackers,
+  setDonationAmount,
+  setProgressionBar,
+  activatePledgeAmount, setActivatePledgeAmount,
+  activatePledgeAmount2, setActivatePledgeAmount2,
+  activatePledgeAmount3, setActivatePledgeAmount3
+}) {
   const [value, setValue] = useState(0); //Allows you to change input amount
 
   // functionality for No Pledge Reward Along with Updating backers and donation amount
@@ -19,6 +27,7 @@ function ProjectModal({ setProjectModal, setSupportModal, backers, donationAmoun
     }
     setBackers(backers + 1);
     setDonationAmount(donationAmount + parseInt(value));
+    setProgressionBar(true);
   };
 
   // functionality for Bamoboo Stand Reward Along with Updating backers and donation amount
@@ -44,7 +53,6 @@ function ProjectModal({ setProjectModal, setSupportModal, backers, donationAmoun
     setBackers(backers + 1);
     setDonationAmount(donationAmount + parseInt(value));
   };
-
 
   // activates pledge containers and makes sure only one pledge is active
   const theNoPledge = () => {
@@ -98,7 +106,10 @@ function ProjectModal({ setProjectModal, setSupportModal, backers, donationAmoun
           className={`${activatePledgeAmount ? "pledgeDiv" : "pledgeDiv2"}`}
         >
           <div>
-            <div className="pledgeHover" onClick={() => theNoPledge()}>
+            <div
+              className={`${activatePledgeAmount ? "" : "pledgeHover"}`}
+              onClick={() => theNoPledge()}
+            >
               <button
                 className={`${activatePledgeAmount ? "toggle" : "notToggle"}`}
               ></button>
@@ -134,7 +145,10 @@ function ProjectModal({ setProjectModal, setSupportModal, backers, donationAmoun
           className={`${activatePledgeAmount2 ? "pledgeDiv" : "pledgeDiv2"}`}
         >
           <div>
-            <div className="pledgeHover" onClick={() => pledge2()}>
+            <div
+              className={`${activatePledgeAmount2 ? "" : "pledgeHover"}`}
+              onClick={() => pledge2()}
+            >
               <button
                 className={`${activatePledgeAmount2 ? "toggle" : "notToggle"}`}
               ></button>
@@ -175,7 +189,10 @@ function ProjectModal({ setProjectModal, setSupportModal, backers, donationAmoun
           className={`${activatePledgeAmount3 ? "pledgeDiv" : "pledgeDiv2"}`}
         >
           <div>
-            <div className="pledgeHover" onClick={() => pledge3()}>
+            <div
+              className={`${activatePledgeAmount3 ? "" : "pledgeHover"}`}
+              onClick={() => pledge3()}
+            >
               <button
                 className={`${activatePledgeAmount3 ? "toggle" : "notToggle"}`}
               ></button>
@@ -364,6 +381,7 @@ const NoPledge = styled.div`
       border-radius: 50%;
       box-shadow: 0.2px 0.2px 0.2px 2px rgba(0, 0, 0, 0.1);
       cursor: pointer;
+      padding-bottom: 0;
     }
 
     p {

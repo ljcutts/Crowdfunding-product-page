@@ -7,226 +7,275 @@ import Thankyou from "./Thankyou";
 import ModalLinks from "./ModalLinks";
 
 function Home() {
-    const [modal, setModal] = useState(false); // state for navbar modal links
-    const [projectModal, setProjectModal] = useState(false); // state for modal with rewards
-    const [bookmark, setBookmark] = useState(false); //state for bookmark
-    const [supportModal, setSupportModal] = useState(false); // state for 'thank you for your support' modal
-    const [donationAmount, setDonationAmount] = useState(89914); //state for donation amount
-    const [backers, setBackers] = useState(5007); // state for amount of backers
-    const aboutRef = useRef();
-    const discoverRef = useRef();
-    const getStartedRef = useRef();
+  const [modal, setModal] = useState(false); // state for navbar modal links
+  const [projectModal, setProjectModal] = useState(false); // state for modal with rewards
+  const [bookmark, setBookmark] = useState(false); //state for bookmark
+  const [supportModal, setSupportModal] = useState(false); // state for 'thank you for your support' modal
+  const [donationAmount, setDonationAmount] = useState(89914); //state for donation amount
+  const [backers, setBackers] = useState(5007); // state for amount of backers
+  const [progressionBar, setProgressionBar] = useState(false); //increase progress of the progression bar
+  const [activatePledgeAmount, setActivatePledgeAmount] = useState(false); //Toggle container that allows you to pay for first Pledge
+  const [activatePledgeAmount2, setActivatePledgeAmount2] = useState(false); //Toggle container that allows you to pay for second Pledge
+  const [activatePledgeAmount3, setActivatePledgeAmount3] = useState(false); // Toggle container that allows you to pay for third Pledge
+  const aboutRef = useRef();
+  const discoverRef = useRef();
+  const getStartedRef = useRef();
 
-//  function to scroll to "About this project" container
-    const scrollToAbout = () => {
-      aboutRef.current.scrollIntoView({ behavior: "smooth" });
-      setModal(false);
-    };
-//   function to scroll to different rewards on Home page
-    const scrollToDiscover = () => {
-      discoverRef.current.scrollIntoView({ behavior: "smooth" });
-      setModal(false);
-    };
-// function to scroll to first container with bookmark and 'back this project' button
-    const scrollToStart = () => {
-      getStartedRef.current.scrollIntoView({ behavior: "smooth" });
-      setModal(false);
-    };
-//    Opens up Modal where you select which Pledge you will donate to
-     const selectReward = () => {
-       setProjectModal(true);
-     };
-    return (
-      <>
-        {/* Nav Bar */}
-        <Nav>
-          {modal === false && (
-            <>
-              <img src="/images/logo.svg" alt="" />
-              <span>
-                <img
-                  src="/images/icon-hamburger.svg"
-                  alt=""
-                  onClick={() => setModal(true)}
-                  // Opens up Modal with NavLinks on Mobile Device
-                />
-                <span onClick={() => scrollToAbout()}>About</span>
-                <span onClick={() => scrollToDiscover()}>Discover</span>
-                <span onClick={() => scrollToStart()}>Get Started</span>
-              </span>
-            </>
-          )}
-        </Nav>
-        {/* HeroSection is everything below the Navbar */}
-        <HeroSection>
-          {/* BookMarkContainer is box with bookmark, mastercraft logo, and 'back this project' button */}
-          <BookMarkContainer>
-            <img src="/images/logo-mastercraft.svg" alt="" />
-            <h1 ref={getStartedRef}>Mastercraft Bamboo Monitor Riser</h1>
+  //  function to scroll to "About this project" container
+  const scrollToAbout = () => {
+    aboutRef.current.scrollIntoView({ behavior: "smooth" });
+    setModal(false);
+  };
+  //   function to scroll to different rewards on Home page
+  const scrollToDiscover = () => {
+    discoverRef.current.scrollIntoView({ behavior: "smooth" });
+    setModal(false);
+  };
+  // function to scroll to first container with bookmark and 'back this project' button
+  const scrollToStart = () => {
+    getStartedRef.current.scrollIntoView({ behavior: "smooth" });
+    setModal(false);
+  };
+
+
+  // Opens up Modal where you select which Pledge you will donate to
+  const selectReward = () => {
+    setProjectModal(true);
+    setActivatePledgeAmount(false);
+    setActivatePledgeAmount3(false);
+    setActivatePledgeAmount2(false);
+  };
+
+  //Opens up Bamboo Pledge
+  const bambooReward = () => {
+    setProjectModal(true);
+    setActivatePledgeAmount(false);
+    setActivatePledgeAmount3(false);
+    setActivatePledgeAmount2(true);
+  };
+
+  //Opens Up Black Edition Pledge
+  const blackReward = () => {
+    setProjectModal(true);
+    setActivatePledgeAmount(false);
+    setActivatePledgeAmount2(false);
+    setActivatePledgeAmount3(true);
+  };
+
+  return (
+    <>
+      {/* Nav Bar */}
+      <Nav>
+        {modal === false && (
+          <>
+            <img src="/images/logo.svg" alt="" />
+            <span>
+              <img
+                src="/images/icon-hamburger.svg"
+                alt=""
+                onClick={() => setModal(true)}
+                // Opens up Modal with NavLinks on Mobile Device
+              />
+              <span onClick={() => scrollToAbout()}>About</span>
+              <span onClick={() => scrollToDiscover()}>Discover</span>
+              <span onClick={() => scrollToStart()}>Get Started</span>
+            </span>
+          </>
+        )}
+      </Nav>
+      {/* HeroSection is everything below the Navbar */}
+      <HeroSection>
+        {/* BookMarkContainer is box with bookmark, mastercraft logo, and 'back this project' button */}
+        <BookMarkContainer>
+          <img src="/images/logo-mastercraft.svg" alt="" />
+          <h1 ref={getStartedRef}>Mastercraft Bamboo Monitor Riser</h1>
+          <p>
+            A beautifully handcrafted monitor stand to reduce neck and eye
+            strain.
+          </p>
+          <div>
+            {/* Button opens up Modal where you select which Pledge you will donate to  */}
+            <button onClick={selectReward}>Back this project</button>
+            <section onClick={() => setBookmark(!bookmark)}>
+              <svg
+                width="56"
+                height="56"
+                xmlns="http://www.w3.org/2000/svg"
+                onClick={() => setBookmark(!bookmark)}
+              >
+                <g fill="none" fill-rule="evenodd">
+                  <circle
+                    fill="#2F2F2F"
+                    cx="28"
+                    cy="28"
+                    r="28"
+                    className={`${bookmark && "circle"}`}
+                  />
+                  <path
+                    fill="#B1B1B1"
+                    d="M23 19v18l5-5.058L33 37V19z"
+                    className={`${bookmark && "bookmark-path"}`}
+                  />
+                </g>
+              </svg>
+              {/* Functionality changes words for bookmark when setBookmark is set to true */}
+              {bookmark ? (
+                <span id="bookmarked">Bookmarked</span>
+              ) : (
+                <span>Bookmark</span>
+              )}
+            </section>
+          </div>
+        </BookMarkContainer>
+        {/* Container that shows numbers and status of amount of donaters and donation amount */}
+        <Stats>
+          <div>
+            <h1>
+              ${donationAmount}
+              <br />
+              <span>of $100,000 backed</span>
+            </h1>
+          </div>
+          <Underline />
+          <div>
+            <h1>
+              {backers}
+              <br />
+              <span>total backers</span>
+            </h1>
+          </div>
+          <Underline />
+          <div>
+            <h1>
+              56
+              <br />
+              <span>days left</span>
+            </h1>
+          </div>
+          <div>
+            <button id={`${progressionBar && "progressionbar2"}`}>
+              {/* Part of progression bar */}
+            </button>
+            <div id={`${progressionBar && "progressionbar"}`}></div>
+          </div>
+        </Stats>
+        {/* Container that describes project and Pledge Rewards */}
+        <ProjectDescription>
+          <div>
+            <h1 ref={aboutRef}>About this project</h1>
+            <span>
+              The Mastercraft Bamboo Monitor Riser is a sturdy and stylish
+              platform that elevates your screen to a more comfortable viewing
+              height. Placing your monitor at eye level has the potential to
+              improve your posture and make you more comfortable while at work,
+              helping you stay focused on the task at hand.
+            </span>
+            <br />
+            <br />
+            <span>
+              Featuring artisan craftsmanship, the simplicity of design creates
+              extra desk space below your computer to allow notepads, pens, and
+              USB sticks to be stored under the stand.
+            </span>
+          </div>
+          <Rewards>
+            <h1 ref={discoverRef}>Bamboo Stand</h1>
+            <span>Pledge $25 or more</span>
+            <br />
+            <br />
             <p>
-              A beautifully handcrafted monitor stand to reduce neck and eye
-              strain.
+              You get an ergonomic stand made of natural bamboo. You've helped
+              us launch our promotional campaign, and you’ll be added to a
+              special Backer member list.
             </p>
             <div>
-              {/* Button opens up Modal where you select which Pledge you will donate to  */}
-              <button onClick={() => setProjectModal(true)}>
-                Back this project
-              </button>
-              <section onClick={() => setBookmark(!bookmark)}> 
-                <img
-                  src="/images/icon-bookmark.svg"
-                  alt=""
-                  className={`${bookmark && "bookmark"}`}
-                  onClick={() => setBookmark(!bookmark)} //Helps light up bookmark and change colors
-                />
-                {/* Functionality changes words for bookmark when setBookmark is set to true */}
-                {bookmark ? (
-                  <span id="bookmarked">Bookmarked</span>
-                ) : (
-                  <span>Bookmark</span>
-                )}
-              </section>
-            </div>
-          </BookMarkContainer>
-          {/* Container that shows numbers and status of amount of donaters and donation amount */}
-          <Stats>
-            <div>
               <h1>
-                ${donationAmount}
-                <br />
-                <span>of $100,000 backed</span>
-              </h1>
-            </div>
-            <Underline />
-            <div>
-              <h1>
-                {backers}
-                <br />
-                <span>total backers</span>
-              </h1>
-            </div>
-            <Underline />
-            <div>
-              <h1>
-                56
-                <br />
-                <span>days left</span>
+                101 <span>left</span>
               </h1>
             </div>
             <div>
-              <button></button>
-              <div></div>
+              <button onClick={bambooReward}>Select Reward</button>
             </div>
-          </Stats>
-          {/* Container that describes project and Pledge Rewards */}
-          <ProjectDescription>
+          </Rewards>
+          <Rewards>
+            <h1>Black Edition Stand</h1>
+            <span>Pledge $75 or more</span>
+            <br />
+            <br />
+            <p>
+              You get a Black Special Edition computer stand and a personal
+              thank you. You’ll be added to our Backer member list. Shipping is
+              included.
+            </p>
             <div>
-              <h1 ref={aboutRef}>About this project</h1>
-              <span>
-                The Mastercraft Bamboo Monitor Riser is a sturdy and stylish
-                platform that elevates your screen to a more comfortable viewing
-                height. Placing your monitor at eye level has the potential to
-                improve your posture and make you more comfortable while at
-                work, helping you stay focused on the task at hand.
-              </span>
-              <br />
-              <br />
-              <span>
-                Featuring artisan craftsmanship, the simplicity of design
-                creates extra desk space below your computer to allow notepads,
-                pens, and USB sticks to be stored under the stand.
-              </span>
+              <h1>
+                64 <span>left</span>
+              </h1>
             </div>
-            <Rewards>
-              <h1 ref={discoverRef}>Bamboo Stand</h1>
-              <span>Pledge $25 or more</span>
-              <br />
-              <br />
-              <p>
-                You get an ergonomic stand made of natural bamboo. You've helped
-                us launch our promotional campaign, and you’ll be added to a
-                special Backer member list.
-              </p>
-              <div>
-                <h1>
-                  101 <span>left</span>
-                </h1>
-              </div>
-              <div>
-                <button onClick={selectReward}>Select Reward</button>
-              </div>
-            </Rewards>
-            <Rewards>
-              <h1>Black Edition Stand</h1>
-              <span>Pledge $75 or more</span>
-              <br />
-              <br />
-              <p>
-                You get a Black Special Edition computer stand and a personal
-                thank you. You’ll be added to our Backer member list. Shipping
-                is included.
-              </p>
-              <div>
-                <h1>
-                  64 <span>left</span>
-                </h1>
-              </div>
-              <div>
-                <button onClick={selectReward}>Select Reward</button>
-              </div>
-            </Rewards>
-            {/* Last Pledge Reward */}
-            <LastReward>
-              <h1>Mahogany Special Edition</h1>
-              <span>Pledge $200 or more</span>
-              <br />
-              <br />
-              <p>
-                You get two Special Edition Mahogany stands, a Backer T-Shirt,
-                and a personal thank you. You’ll be added to our Backer member
-                list. Shipping is included.
-              </p>
-              <div>
-                <h1>
-                  0 <span>left</span>
-                </h1>
-              </div>
-              <div>
-                <button>Out of Stock</button>
-              </div>
-            </LastReward>
-          </ProjectDescription>
-        </HeroSection>
-        {/* Nav modal links */}
-        {modal && (
-          <ModalLinks
-            modal={modal}
-            setModal={setModal}
-            aboutRef={aboutRef}
-            discoverRef={discoverRef}
-            getStartedRef={getStartedRef}
-          />
-        )}
-        {/* Modal that allows you to pay for Pledge Reward */}
-        {projectModal && (
-          <ProjectModal
-            setProjectModal={setProjectModal}
-            setSupportModal={setSupportModal}
-            backers={backers}
-            setBackers={setBackers}
-            donationAmount={donationAmount}
-            setDonationAmount={setDonationAmount}
-          />
-        )}
-        {/* Modal with 'thank you for your support' message */}
-        {supportModal && (
-          <Thankyou
-            setSupportModal={setSupportModal}
-            setProjectModal={setProjectModal}
-          />
-        )}
-      </>
-    );
+            <div>
+              {}
+              <button onClick={blackReward}>Select Reward</button>
+            </div>
+          </Rewards>
+          {/* Last Pledge Reward */}
+          <LastReward>
+            <h1>Mahogany Special Edition</h1>
+            <span>Pledge $200 or more</span>
+            <br />
+            <br />
+            <p>
+              You get two Special Edition Mahogany stands, a Backer T-Shirt, and
+              a personal thank you. You’ll be added to our Backer member list.
+              Shipping is included.
+            </p>
+            <div>
+              <h1>
+                0 <span>left</span>
+              </h1>
+            </div>
+            <div>
+              <button>Out of Stock</button>
+            </div>
+          </LastReward>
+        </ProjectDescription>
+      </HeroSection>
+      {/* Nav modal links */}
+      {modal && (
+        <ModalLinks
+          modal={modal}
+          setModal={setModal}
+          aboutRef={aboutRef}
+          discoverRef={discoverRef}
+          getStartedRef={getStartedRef}
+        />
+      )}
+      {/* Modal that allows you to pay for Pledge Reward */}
+      {projectModal && (
+        <ProjectModal
+          setProjectModal={setProjectModal}
+          setSupportModal={setSupportModal}
+          backers={backers}
+          setBackers={setBackers}
+          donationAmount={donationAmount}
+          setDonationAmount={setDonationAmount}
+          setProgressionBar={setProgressionBar}
+          activatePledgeAmount={activatePledgeAmount}
+          setActivatePledgeAmount={setActivatePledgeAmount}
+          activatePledgeAmount2={activatePledgeAmount2}
+          setActivatePledgeAmount2={setActivatePledgeAmount2}
+          activatePledgeAmount3={activatePledgeAmount3}
+          setActivatePledgeAmount3={setActivatePledgeAmount3}
+        />
+      )}
+      {/* Modal with 'thank you for your support' message */}
+      {supportModal && (
+        <Thankyou
+          setSupportModal={setSupportModal}
+          setProjectModal={setProjectModal}
+        />
+      )}
+    </>
+  );
 }
 // Styling for Navbar 
 const Nav = styled.nav`
@@ -521,13 +570,13 @@ const Nav = styled.nav`
      }
      div:last-child {
        width: 570px;
-       height: 13px;
+       height: 9px;
        background: hsl(176, 50%, 47%);
        padding: 0;
        margin-top: -0.8rem;
        border-radius: 1.5rem;
        margin-right: 3rem;
-       transform: translateY(75px);
+       transform: translateY(76px);
      }
      button {
        width: 740px;
